@@ -24,19 +24,45 @@
           <!-- Right Nav Section -->
           <ul class="right">
             <li class="divider"></li>
-            <li><a href="#">Posts</a></li>
+            <li>{{#linkTo 'posts'}}Posts{{/linkTo}}</li>
             <li class="divider"></li>
-            <li><a href="#">About</a></li>
+            <li>{{#linkTo 'about'}}About{{/linkTo}}</li>
           </ul>
         </section>
       </nav>
       <section id="content">
         <div class="row">
           <div class="large-12 columns">
-  
+            {{outlet}}
           </div>
         </div>
       </section>
+    </script>
+    
+    <script type="text/x-handlebars" data-template-name="posts">
+      <div class="large-6 columns">
+        <h2>Recent Posts</h2>
+        <ul>
+          {{#each model}}
+            <li>{{#linkTo 'post' this}}{{title}} by {{author}}{{/linkTo}}</li>
+          {{/each}}
+        </ul>
+      </div>
+      <div class="large-6 columns">
+        {{outlet}}
+      </div>
+    </script>
+    
+    <script type="text/x-handlebars" data-template-name="post">
+      <h2>{{title}}</h2>
+      <div>{{author}} <span>({{date publishedAt}})</span></div>
+      <hr>
+      <div class="intro">
+        {{intro}}
+      </div>
+      <div class="below-the-fold">
+        {{extended}}
+      </div>
     </script>
     
     <script type="text/x-handlebars" data-template-name="about">
